@@ -1,0 +1,2764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <title>K Food Sri Lanka - Korean Groceries</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet" />
+    <style>
+        /* ===== RESET & ROOT ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1A202C;
+            --primary-light: #2D3748;
+            --accent: #E53E3E;
+            --accent-hover: #C53030;
+            --gold: #D69E2E;
+            --cream: #F7FAFC;
+            --white: #FFFFFF;
+            --gray-50: #F7FAFC;
+            --gray-100: #EDF2F7;
+            --gray-200: #E2E8F0;
+            --gray-300: #CBD5E0;
+            --gray-400: #A0AEC0;
+            --gray-500: #718096;
+            --gray-600: #4A5568;
+            --gray-700: #2D3748;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.12);
+            --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.15);
+            --radius: 16px;
+            --radius-sm: 10px;
+            --radius-full: 9999px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --header-height: 64px;
+            --cat-height: 60px;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans KR', sans-serif;
+            background: var(--gray-50);
+            color: var(--primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .up-display {
+            font-family: 'Inter', sans-serif;
+            letter-spacing: -0.02em;
+            font-weight: 800;
+        }
+
+        /* ===== HEADER ===== */
+        .up-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 24px;
+            background: rgba(26, 32, 44, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 30;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            min-height: var(--header-height);
+        }
+
+        .up-logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            user-select: none;
+            flex-shrink: 0;
+        }
+
+        .up-logo .up-display {
+            font-size: 18px;
+            background: linear-gradient(135deg, #E53E3E, #D69E2E);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .up-logo .up-ko {
+            font-size: 11px;
+            color: var(--gray-400);
+            font-weight: 500;
+        }
+
+        .up-nav {
+            display: flex;
+            gap: 24px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .up-nav span {
+            cursor: pointer;
+            opacity: 0.8;
+            transition: var(--transition);
+            position: relative;
+            padding: 4px 0;
+        }
+
+        .up-nav span:hover {
+            opacity: 1;
+            color: var(--gold);
+        }
+
+        .up-nav span::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s;
+        }
+
+        .up-nav span:hover::after {
+            width: 100%;
+        }
+
+        .up-header-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .up-cart-btn {
+            position: relative;
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 13px;
+            transition: var(--transition);
+            font-family: inherit;
+            white-space: nowrap;
+        }
+
+        .up-cart-btn:hover {
+            transform: scale(1.04);
+            background: var(--accent-hover);
+        }
+
+        .up-cart-count {
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            background: var(--gold);
+            color: var(--primary);
+            font-size: 10px;
+            font-weight: 800;
+            border-radius: var(--radius-full);
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .up-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            padding: 4px;
+            font-size: 24px;
+        }
+
+        .up-mobile-nav {
+            display: none;
+            position: fixed;
+            top: var(--header-height);
+            left: 0;
+            right: 0;
+            background: var(--primary);
+            padding: 16px 24px;
+            z-index: 29;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .up-mobile-nav.open {
+            display: flex;
+        }
+
+        .up-mobile-nav span {
+            color: white;
+            font-size: 15px;
+            font-weight: 500;
+            padding: 8px 0;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: var(--transition);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .up-mobile-nav span:hover {
+            opacity: 1;
+            color: var(--gold);
+        }
+
+        /* ===== HERO ===== */
+        .up-hero {
+            background: linear-gradient(135deg, #1A202C 0%, #2D3748 100%);
+            color: white;
+            padding: 48px 24px 40px;
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 60vh;
+        }
+
+        .up-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: 
+                radial-gradient(ellipse at 20% 50%, rgba(229, 62, 62, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 30%, rgba(214, 158, 46, 0.06) 0%, transparent 40%),
+                repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(255,255,255,0.02) 40px, rgba(255,255,255,0.02) 41px),
+                repeating-linear-gradient(-45deg, transparent, transparent 40px, rgba(255,255,255,0.02) 40px, rgba(255,255,255,0.02) 41px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .up-hero-noodles {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .up-hero-noodle {
+            position: absolute;
+            font-size: 60px;
+            opacity: 0.06;
+            animation: floatNoodle 20s ease-in-out infinite;
+        }
+
+        .up-hero-noodle:nth-child(1) { top: 5%; left: 5%; animation-delay: 0s; font-size: 80px; }
+        .up-hero-noodle:nth-child(2) { top: 15%; right: 10%; animation-delay: 3s; font-size: 50px; }
+        .up-hero-noodle:nth-child(3) { bottom: 20%; left: 8%; animation-delay: 6s; font-size: 70px; }
+        .up-hero-noodle:nth-child(4) { bottom: 10%; right: 5%; animation-delay: 9s; font-size: 90px; }
+        .up-hero-noodle:nth-child(5) { top: 45%; left: 50%; animation-delay: 12s; font-size: 40px; }
+        .up-hero-noodle:nth-child(6) { top: 60%; left: 15%; animation-delay: 15s; font-size: 55px; }
+        .up-hero-noodle:nth-child(7) { top: 30%; right: 30%; animation-delay: 2s; font-size: 45px; }
+        .up-hero-noodle:nth-child(8) { bottom: 40%; left: 45%; animation-delay: 8s; font-size: 35px; }
+
+        @keyframes floatNoodle {
+            0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+            25% { transform: translate(30px, -20px) rotate(5deg) scale(1.1); }
+            50% { transform: translate(-20px, 30px) rotate(-3deg) scale(0.9); }
+            75% { transform: translate(15px, -10px) rotate(4deg) scale(1.05); }
+        }
+
+        .up-hero-flakes {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .up-flake {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+            opacity: 0;
+            animation: flakeFall 8s ease-in infinite;
+        }
+
+        .up-flake:nth-child(1) { left: 10%; animation-delay: 0s; animation-duration: 7s; }
+        .up-flake:nth-child(2) { left: 25%; animation-delay: 2s; animation-duration: 9s; }
+        .up-flake:nth-child(3) { left: 40%; animation-delay: 4s; animation-duration: 8s; }
+        .up-flake:nth-child(4) { left: 55%; animation-delay: 1s; animation-duration: 10s; }
+        .up-flake:nth-child(5) { left: 70%; animation-delay: 3s; animation-duration: 7.5s; }
+        .up-flake:nth-child(6) { left: 85%; animation-delay: 5s; animation-duration: 8.5s; }
+        .up-flake:nth-child(7) { left: 15%; animation-delay: 6s; animation-duration: 9.5s; }
+        .up-flake:nth-child(8) { left: 50%; animation-delay: 2.5s; animation-duration: 7.8s; }
+
+        @keyframes flakeFall {
+            0% { opacity: 0; transform: translateY(-20px) scale(0); }
+            20% { opacity: 0.6; transform: translateY(20px) scale(1); }
+            80% { opacity: 0.6; transform: translateY(60px) scale(1); }
+            100% { opacity: 0; transform: translateY(100px) scale(0.5); }
+        }
+
+        .up-hero-copy {
+            max-width: 480px;
+            position: relative;
+            z-index: 1;
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .up-hero-eyebrow {
+            display: inline-block;
+            background: rgba(214, 158, 46, 0.15);
+            color: var(--gold);
+            padding: 4px 14px;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: 11px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            border: 1px solid rgba(214, 158, 46, 0.1);
+            animation: pulseGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(214, 158, 46, 0); }
+            50% { box-shadow: 0 0 30px rgba(214, 158, 46, 0.1); }
+        }
+
+        .up-hero h1 {
+            font-size: 38px;
+            line-height: 1.1;
+            margin: 6px 0 12px;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .up-hero h1 span {
+            background: linear-gradient(135deg, var(--gold), #F6AD55);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmerText 4s ease-in-out infinite;
+        }
+
+        @keyframes shimmerText {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .up-hero p {
+            font-size: 15px;
+            line-height: 1.7;
+            opacity: 0.8;
+            margin-bottom: 20px;
+            max-width: 400px;
+        }
+
+        .up-hero-cta {
+            background: var(--gold);
+            color: var(--primary);
+            border: none;
+            font-weight: 700;
+            padding: 12px 28px;
+            border-radius: var(--radius-full);
+            font-size: 14px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            font-family: inherit;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .up-hero-cta::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--gold), #F6AD55);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .up-hero-cta:hover::before {
+            opacity: 1;
+        }
+
+        .up-hero-cta:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 8px 30px rgba(214, 158, 46, 0.4);
+        }
+
+        .up-hero-cta span,
+        .up-hero-cta svg {
+            position: relative;
+            z-index: 1;
+        }
+
+        .up-hero-stats {
+            display: flex;
+            gap: 24px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .up-stat {
+            display: flex;
+            flex-direction: column;
+            animation: fadeInUp 1s ease;
+            animation-delay: 0.2s;
+            animation-fill-mode: both;
+        }
+
+        .up-stat:nth-child(2) { animation-delay: 0.4s; }
+        .up-stat:nth-child(3) { animation-delay: 0.6s; }
+
+        .up-stat-value {
+            font-size: 18px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--gold), #F6AD55);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .up-stat-label {
+            font-size: 11px;
+            opacity: 0.6;
+        }
+
+        .up-table {
+            position: relative;
+            width: 320px;
+            height: 240px;
+            flex-shrink: 0;
+            z-index: 1;
+        }
+
+        .up-dish {
+            position: absolute;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4), inset 0 0 0 4px rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease;
+            cursor: default;
+            animation: floatDish 6s ease-in-out infinite;
+        }
+
+        .up-dish:nth-child(1) { animation-delay: 0s; }
+        .up-dish:nth-child(2) { animation-delay: 1s; }
+        .up-dish:nth-child(3) { animation-delay: 2s; }
+        .up-dish:nth-child(4) { animation-delay: 0.5s; }
+        .up-dish:nth-child(5) { animation-delay: 1.5s; }
+        .up-dish:nth-child(6) { animation-delay: 2.5s; }
+        .up-dish:nth-child(7) { animation-delay: 1s; }
+
+        @keyframes floatDish {
+            0%, 100% { transform: translateY(0) rotate(var(--rot, 0deg)); }
+            50% { transform: translateY(-10px) rotate(calc(var(--rot, 0deg) + 3deg)); }
+        }
+
+        .up-dish:hover {
+            transform: scale(1.1) rotate(5deg) !important;
+            z-index: 10;
+        }
+
+        /* ===== CATEGORY STRIP ===== */
+        .up-catstrip {
+            display: flex;
+            gap: 8px;
+            padding: 12px 24px;
+            overflow-x: auto;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--gray-200);
+            position: sticky;
+            top: var(--header-height);
+            z-index: 20;
+            scrollbar-width: thin;
+            align-items: center;
+            min-height: var(--cat-height);
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .up-catstrip::-webkit-scrollbar {
+            height: 3px;
+        }
+
+        .up-catstrip::-webkit-scrollbar-thumb {
+            background: var(--gray-300);
+            border-radius: 4px;
+        }
+
+        .up-catstrip::-webkit-scrollbar-track {
+            background: var(--gray-100);
+        }
+
+        .up-cat-chip {
+            border: 2px solid var(--gray-200);
+            background: white;
+            color: var(--gray-600);
+            padding: 6px 14px;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: 12px;
+            white-space: nowrap;
+            cursor: pointer;
+            display: flex;
+            gap: 6px;
+            align-items: center;
+            transition: var(--transition);
+            flex-shrink: 0;
+            font-family: inherit;
+        }
+
+        .up-cat-chip:hover {
+            border-color: var(--gray-400);
+            transform: translateY(-1px);
+        }
+
+        .up-cat-chip .up-chip-ko {
+            font-size: 10px;
+            opacity: 0.6;
+            font-weight: 400;
+        }
+
+        .up-cat-chip .up-chip-icon {
+            font-size: 14px;
+        }
+
+        .up-cat-chip.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .up-searchwrap {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius-full);
+            padding: 3px 14px;
+            min-width: 160px;
+            background: white;
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+
+        .up-searchwrap:focus-within {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(26, 32, 44, 0.08);
+        }
+
+        .up-searchwrap input {
+            border: none;
+            outline: none;
+            background: transparent;
+            font-size: 13px;
+            width: 100%;
+            font-family: inherit;
+            padding: 5px 0;
+            min-width: 80px;
+        }
+
+        .up-searchwrap .up-search-icon {
+            color: var(--gray-400);
+            flex-shrink: 0;
+        }
+
+        /* ===== PRODUCT GRID ===== */
+        .up-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 24px;
+            padding: 24px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .up-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 20px 16px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--gray-100);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .up-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--gray-200);
+        }
+
+        .up-card-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: var(--accent);
+            color: white;
+            font-size: 9px;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: var(--radius-full);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            z-index: 2;
+        }
+
+        .up-wishlist-btn {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(255,255,255,0.9);
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            transition: var(--transition);
+            opacity: 0.7;
+            font-family: inherit;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .up-wishlist-btn:hover {
+            opacity: 1;
+            transform: scale(1.1);
+            background: white;
+        }
+
+        .up-wishlist-btn.active {
+            opacity: 1;
+            color: var(--accent);
+            background: white;
+        }
+
+        .up-product-image {
+            width: 100%;
+            height: 180px;
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            margin-bottom: 14px;
+            position: relative;
+            background: var(--gray-100);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .up-product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .up-card:hover .up-product-image img {
+            transform: scale(1.05);
+        }
+
+        .up-product-image .up-emoji-big {
+            font-size: 64px;
+            opacity: 0.3;
+        }
+
+        .up-product-image .up-image-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--gray-100), var(--gray-200));
+        }
+
+        .up-product-image .up-image-placeholder .up-emoji-big {
+            font-size: 56px;
+            opacity: 0.5;
+        }
+
+        .up-product-image .up-image-placeholder .up-brand-tag {
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--gray-400);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-top: 4px;
+        }
+
+        .up-card-brand {
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--gray-400);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 2px;
+        }
+
+        .up-card-en {
+            font-weight: 700;
+            font-size: 15px;
+            margin-bottom: 2px;
+        }
+
+        .up-card-ko {
+            font-size: 12px;
+            opacity: 0.5;
+            margin-bottom: 4px;
+        }
+
+        .up-card-desc {
+            font-size: 12px;
+            opacity: 0.6;
+            margin-bottom: 8px;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            min-height: 34px;
+        }
+
+        .up-card-weight {
+            font-size: 11px;
+            opacity: 0.5;
+            margin-bottom: 6px;
+        }
+
+        .up-card-price {
+            font-weight: 800;
+            color: var(--primary);
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+
+        .up-add-btn {
+            border: none;
+            background: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            width: 100%;
+            justify-content: center;
+            transition: var(--transition);
+            font-family: inherit;
+        }
+
+        .up-add-btn:hover {
+            background: var(--primary-light);
+            transform: scale(1.02);
+        }
+
+        .up-empty {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 40px 20px;
+            opacity: 0.5;
+            font-size: 14px;
+        }
+
+        /* ===== CART DRAWER ===== */
+        .up-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(26, 32, 44, 0.6);
+            z-index: 40;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            animation: fadeIn 0.2s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
+        }
+
+        .up-drawer {
+            position: fixed;
+            top: 0;
+            right: 0;
+            height: 100%;
+            width: 400px;
+            max-width: 92vw;
+            background: white;
+            z-index: 50;
+            display: flex;
+            flex-direction: column;
+            box-shadow: var(--shadow-xl);
+            animation: slideIn 0.3s ease;
+        }
+
+        .up-drawer-head {
+            background: var(--primary);
+            color: white;
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .up-drawer-head .up-display {
+            font-size: 17px;
+        }
+
+        .up-drawer-head button {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            padding: 4px;
+            opacity: 0.7;
+            transition: var(--transition);
+        }
+
+        .up-drawer-head button:hover {
+            opacity: 1;
+        }
+
+        .up-drawer-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px 20px;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .up-line {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .up-line-image {
+            width: 52px;
+            height: 52px;
+            border-radius: 8px;
+            overflow: hidden;
+            flex-shrink: 0;
+            background: var(--gray-100);
+        }
+
+        .up-line-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .up-line-image .up-emoji-sm {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            background: var(--gray-100);
+        }
+
+        .up-line-info {
+            flex: 1;
+            text-align: left;
+            min-width: 0;
+        }
+
+        .up-line-en {
+            font-weight: 600;
+            font-size: 13px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .up-line-price {
+            font-size: 11px;
+            opacity: 0.6;
+        }
+
+        .up-qty {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .up-qty button {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            border: 2px solid var(--gray-200);
+            background: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            font-size: 11px;
+            font-family: inherit;
+            color: var(--primary);
+        }
+
+        .up-qty button:hover {
+            border-color: var(--primary);
+            background: var(--gray-50);
+        }
+
+        .up-qty span {
+            font-weight: 700;
+            font-size: 13px;
+            min-width: 20px;
+            text-align: center;
+        }
+
+        .up-drawer-foot {
+            padding: 16px 20px;
+            border-top: 2px solid var(--gray-100);
+            background: white;
+            flex-shrink: 0;
+        }
+
+        .up-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            margin-bottom: 4px;
+        }
+
+        .up-row.total {
+            font-weight: 800;
+            font-size: 17px;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 2px solid var(--gray-200);
+        }
+
+        .up-checkout-btn {
+            margin-top: 12px;
+            width: 100%;
+            background: var(--gold);
+            color: var(--primary);
+            border: none;
+            padding: 12px;
+            border-radius: var(--radius-sm);
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 14px;
+            transition: var(--transition);
+            font-family: inherit;
+        }
+
+        .up-checkout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(214, 158, 46, 0.25);
+        }
+
+        .up-empty-cart {
+            text-align: center;
+            padding: 40px 10px;
+            opacity: 0.5;
+            font-size: 13px;
+        }
+
+        /* ===== CHECKOUT MODAL ===== */
+        .up-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(26, 32, 44, 0.7);
+            z-index: 60;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            animation: fadeIn 0.2s ease;
+        }
+
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .up-modal {
+            background: white;
+            border-radius: var(--radius);
+            width: 460px;
+            max-width: 100%;
+            max-height: 88vh;
+            overflow-y: auto;
+            padding: 24px;
+            position: relative;
+            box-shadow: var(--shadow-xl);
+            animation: scaleIn 0.3s ease;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .up-modal-close {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 6px;
+            border-radius: 8px;
+            transition: var(--transition);
+            color: var(--gray-500);
+        }
+
+        .up-modal-close:hover {
+            background: var(--gray-100);
+        }
+
+        .up-steps {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 20px;
+        }
+
+        .up-step-dot {
+            flex: 1;
+            height: 4px;
+            border-radius: 2px;
+            background: var(--gray-200);
+            transition: var(--transition);
+        }
+
+        .up-step-dot.done {
+            background: var(--accent);
+        }
+
+        .up-field {
+            margin-bottom: 14px;
+        }
+
+        .up-field label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: var(--gray-600);
+        }
+
+        .up-field input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius-sm);
+            font-size: 13px;
+            font-family: inherit;
+            outline: none;
+            transition: var(--transition);
+            appearance: none;
+            -webkit-appearance: none;
+        }
+
+        .up-field input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(26, 32, 44, 0.08);
+        }
+
+        .up-field-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .up-field-row .up-field {
+            flex: 1;
+        }
+
+        .up-modal-submit {
+            width: 100%;
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: var(--radius-sm);
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            margin-top: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: var(--transition);
+            font-family: inherit;
+        }
+
+        .up-modal-submit:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(229, 62, 62, 0.25);
+        }
+
+        .up-modal-back {
+            background: none;
+            border: none;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--gray-600);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin-bottom: 12px;
+            transition: var(--transition);
+            font-family: inherit;
+        }
+
+        .up-modal-back:hover {
+            color: var(--primary);
+        }
+
+        .up-confirm-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: var(--gold);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            font-size: 28px;
+        }
+
+        /* ===== OFFER BANNER (inline, centered in hero) ===== */
+        .up-offer-banner {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 28px;
+        }
+
+        .up-offer-banner img {
+            width: 100%;
+            max-width: 360px;
+            display: block;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-xl);
+            animation: offerPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .up-offer-banner img:hover {
+            transform: scale(1.02);
+        }
+
+        @keyframes offerPop {
+            from { opacity: 0; transform: scale(0.9) translateY(-10px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .up-offer-banner img {
+                max-width: 280px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .up-offer-banner {
+                margin-bottom: 20px;
+            }
+            .up-offer-banner img {
+                max-width: 220px;
+            }
+        }
+
+        /* ===== TOAST ===== */
+        .up-toast {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 70;
+            background: var(--primary);
+            color: white;
+            padding: 12px 24px;
+            border-radius: var(--radius-full);
+            font-size: 13px;
+            font-weight: 600;
+            box-shadow: var(--shadow-lg);
+            animation: slideUp 0.4s ease;
+            white-space: nowrap;
+            max-width: 90%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+            to { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
+
+        /* ===== FOOTER ===== */
+        .up-footer {
+            background: var(--primary);
+            color: var(--gray-400);
+            padding: 32px 24px;
+            text-align: center;
+            font-size: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            line-height: 1.8;
+        }
+
+        /* ============================================================ */
+        /* ===== RESPONSIVE ===== */
+        /* ============================================================ */
+
+        @media (max-width: 1200px) {
+            .up-grid {
+                grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+                gap: 18px;
+                padding: 20px;
+            }
+            
+            .up-hero h1 {
+                font-size: 34px;
+            }
+            
+            .up-table {
+                width: 280px;
+                height: 210px;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .up-hero {
+                padding: 40px 20px 32px;
+                gap: 32px;
+            }
+            
+            .up-hero h1 {
+                font-size: 30px;
+            }
+            
+            .up-hero p {
+                font-size: 14px;
+            }
+            
+            .up-table {
+                width: 250px;
+                height: 190px;
+            }
+            
+            .up-grid {
+                grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+                gap: 16px;
+                padding: 16px;
+            }
+            
+            .up-catstrip {
+                padding: 10px 16px;
+                gap: 6px;
+                top: var(--header-height);
+            }
+            
+            .up-searchwrap {
+                min-width: 120px;
+                padding: 2px 12px;
+            }
+            
+            .up-searchwrap input {
+                font-size: 12px;
+                min-width: 60px;
+            }
+            
+            .up-cat-chip {
+                font-size: 11px;
+                padding: 5px 12px;
+            }
+            
+            .up-nav {
+                gap: 16px;
+                font-size: 13px;
+            }
+            
+            .up-product-image {
+                height: 150px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            :root {
+                --header-height: 56px;
+                --cat-height: 52px;
+            }
+            
+            .up-header {
+                padding: 8px 16px;
+                min-height: var(--header-height);
+            }
+            
+            .up-logo .up-display {
+                font-size: 16px;
+            }
+            
+            .up-logo .up-ko {
+                font-size: 10px;
+            }
+            
+            .up-nav {
+                display: none;
+            }
+            
+            .up-menu-toggle {
+                display: block;
+            }
+            
+            .up-cart-btn {
+                padding: 6px 14px;
+                font-size: 12px;
+            }
+            
+            .up-cart-btn svg {
+                width: 14px;
+                height: 14px;
+            }
+            
+            .up-hero {
+                padding: 32px 16px 28px;
+                gap: 24px;
+                min-height: 50vh;
+            }
+            
+            .up-hero h1 {
+                font-size: 26px;
+            }
+            
+            .up-hero p {
+                font-size: 13px;
+                margin-bottom: 16px;
+            }
+            
+            .up-hero-cta {
+                padding: 10px 22px;
+                font-size: 13px;
+            }
+            
+            .up-hero-stats {
+                gap: 16px;
+                margin-top: 16px;
+            }
+            
+            .up-stat-value {
+                font-size: 16px;
+            }
+            
+            .up-table {
+                width: 220px;
+                height: 170px;
+            }
+            
+            .up-catstrip {
+                padding: 8px 12px;
+                gap: 6px;
+                top: var(--header-height);
+                min-height: var(--cat-height);
+            }
+            
+            .up-cat-chip {
+                font-size: 10px;
+                padding: 4px 10px;
+            }
+            
+            .up-cat-chip .up-chip-icon {
+                font-size: 12px;
+            }
+            
+            .up-searchwrap {
+                min-width: 100px;
+                padding: 2px 10px;
+            }
+            
+            .up-searchwrap input {
+                font-size: 11px;
+                min-width: 50px;
+            }
+            
+            .up-grid {
+                grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+                gap: 12px;
+                padding: 12px;
+            }
+            
+            .up-card {
+                padding: 14px 12px 12px;
+            }
+            
+            .up-product-image {
+                height: 130px;
+                margin-bottom: 10px;
+            }
+            
+            .up-product-image .up-emoji-big {
+                font-size: 40px;
+            }
+            
+            .up-card-en {
+                font-size: 13px;
+            }
+            
+            .up-card-ko {
+                font-size: 10px;
+            }
+            
+            .up-card-desc {
+                font-size: 11px;
+                min-height: 28px;
+            }
+            
+            .up-card-price {
+                font-size: 16px;
+                margin-bottom: 10px;
+            }
+            
+            .up-add-btn {
+                padding: 8px 14px;
+                font-size: 12px;
+            }
+            
+            .up-drawer {
+                width: 100%;
+                max-width: 100%;
+            }
+            
+            .up-modal {
+                padding: 20px;
+                margin: 12px;
+            }
+            
+            .up-toast {
+                font-size: 12px;
+                padding: 10px 18px;
+                white-space: normal;
+                max-width: 92%;
+            }
+            
+            .up-footer {
+                padding: 24px 16px;
+                font-size: 11px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            :root {
+                --header-height: 52px;
+                --cat-height: 48px;
+            }
+            
+            .up-header {
+                padding: 6px 12px;
+                min-height: var(--header-height);
+            }
+            
+            .up-logo .up-display {
+                font-size: 14px;
+            }
+            
+            .up-logo .up-ko {
+                font-size: 9px;
+            }
+            
+            .up-cart-btn {
+                padding: 5px 10px;
+                font-size: 11px;
+                gap: 4px;
+            }
+            
+            .up-cart-btn svg {
+                width: 12px;
+                height: 12px;
+            }
+            
+            .up-cart-count {
+                width: 16px;
+                height: 16px;
+                font-size: 8px;
+                top: -4px;
+                right: -4px;
+            }
+            
+            .up-hero {
+                padding: 24px 12px 20px;
+                gap: 16px;
+                min-height: auto;
+            }
+            
+            .up-hero-eyebrow {
+                font-size: 9px;
+                padding: 3px 10px;
+                margin-bottom: 8px;
+            }
+            
+            .up-hero h1 {
+                font-size: 22px;
+            }
+            
+            .up-hero p {
+                font-size: 12px;
+                line-height: 1.6;
+                margin-bottom: 12px;
+            }
+            
+            .up-hero-cta {
+                padding: 8px 18px;
+                font-size: 12px;
+            }
+            
+            .up-hero-stats {
+                gap: 12px;
+                margin-top: 12px;
+            }
+            
+            .up-stat-value {
+                font-size: 14px;
+            }
+            
+            .up-stat-label {
+                font-size: 9px;
+            }
+            
+            .up-table {
+                width: 180px;
+                height: 140px;
+            }
+            
+            .up-catstrip {
+                padding: 6px 10px;
+                gap: 4px;
+                top: var(--header-height);
+                min-height: var(--cat-height);
+            }
+            
+            .up-cat-chip {
+                font-size: 9px;
+                padding: 3px 8px;
+                gap: 4px;
+                border-width: 1.5px;
+            }
+            
+            .up-cat-chip .up-chip-icon {
+                font-size: 10px;
+            }
+            
+            .up-cat-chip .up-chip-ko {
+                font-size: 8px;
+            }
+            
+            .up-searchwrap {
+                min-width: 80px;
+                padding: 1px 8px;
+                gap: 4px;
+                border-width: 1.5px;
+            }
+            
+            .up-searchwrap input {
+                font-size: 10px;
+                min-width: 40px;
+                padding: 3px 0;
+            }
+            
+            .up-searchwrap .up-search-icon svg {
+                width: 12px;
+                height: 12px;
+            }
+            
+            .up-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+                padding: 10px;
+            }
+            
+            .up-card {
+                padding: 12px 10px 10px;
+                border-radius: 12px;
+            }
+            
+            .up-card-badge {
+                font-size: 7px;
+                padding: 2px 8px;
+                top: 8px;
+                left: 8px;
+            }
+            
+            .up-wishlist-btn {
+                font-size: 14px;
+                width: 30px;
+                height: 30px;
+                top: 8px;
+                right: 8px;
+            }
+            
+            .up-product-image {
+                height: 110px;
+                margin-bottom: 8px;
+                border-radius: 8px;
+            }
+            
+            .up-product-image .up-emoji-big {
+                font-size: 32px;
+            }
+            
+            .up-card-brand {
+                font-size: 8px;
+            }
+            
+            .up-card-en {
+                font-size: 12px;
+            }
+            
+            .up-card-ko {
+                font-size: 9px;
+                margin-bottom: 3px;
+            }
+            
+            .up-card-desc {
+                font-size: 10px;
+                min-height: 24px;
+                -webkit-line-clamp: 1;
+                line-clamp: 1;
+                margin-bottom: 4px;
+            }
+            
+            .up-card-price {
+                font-size: 14px;
+                margin-bottom: 8px;
+            }
+            
+            .up-add-btn {
+                padding: 6px 10px;
+                font-size: 10px;
+                gap: 4px;
+            }
+            
+            .up-add-btn svg {
+                width: 10px;
+                height: 10px;
+            }
+            
+            .up-drawer-head {
+                padding: 12px 16px;
+            }
+            
+            .up-drawer-head .up-display {
+                font-size: 15px;
+            }
+            
+            .up-drawer-body {
+                padding: 12px 16px;
+            }
+            
+            .up-line {
+                padding: 10px 0;
+                gap: 10px;
+            }
+            
+            .up-line-image {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .up-line-image .up-emoji-sm {
+                font-size: 20px;
+            }
+            
+            .up-line-en {
+                font-size: 12px;
+            }
+            
+            .up-line-price {
+                font-size: 10px;
+            }
+            
+            .up-qty button {
+                width: 22px;
+                height: 22px;
+                font-size: 10px;
+            }
+            
+            .up-qty span {
+                font-size: 12px;
+                min-width: 16px;
+            }
+            
+            .up-drawer-foot {
+                padding: 12px 16px;
+            }
+            
+            .up-row {
+                font-size: 12px;
+            }
+            
+            .up-row.total {
+                font-size: 15px;
+            }
+            
+            .up-checkout-btn {
+                padding: 10px;
+                font-size: 13px;
+            }
+            
+            .up-modal {
+                padding: 16px;
+                border-radius: 12px;
+            }
+            
+            .up-modal h2 {
+                font-size: 18px !important;
+            }
+            
+            .up-field {
+                margin-bottom: 10px;
+            }
+            
+            .up-field label {
+                font-size: 11px;
+            }
+            
+            .up-field input {
+                padding: 8px 10px;
+                font-size: 12px;
+            }
+            
+            .up-modal-submit {
+                padding: 10px;
+                font-size: 13px;
+            }
+            
+            .up-confirm-icon {
+                width: 48px;
+                height: 48px;
+                font-size: 20px;
+            }
+            
+            .up-toast {
+                font-size: 11px;
+                padding: 8px 16px;
+                bottom: 16px;
+                max-width: 95%;
+            }
+            
+            .up-footer {
+                padding: 20px 12px;
+                font-size: 10px;
+            }
+            
+            .up-mobile-nav {
+                padding: 12px 16px;
+                top: var(--header-height);
+            }
+            
+            .up-mobile-nav span {
+                font-size: 13px;
+                padding: 6px 0;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .up-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+                padding: 8px;
+            }
+            
+            .up-card {
+                padding: 10px 8px 8px;
+            }
+            
+            .up-product-image {
+                height: 90px;
+            }
+            
+            .up-product-image .up-emoji-big {
+                font-size: 28px;
+            }
+            
+            .up-card-en {
+                font-size: 10px;
+            }
+            
+            .up-card-ko {
+                font-size: 8px;
+            }
+            
+            .up-card-price {
+                font-size: 12px;
+                margin-bottom: 6px;
+            }
+            
+            .up-add-btn {
+                font-size: 8px;
+                padding: 4px 6px;
+            }
+            
+            .up-hero h1 {
+                font-size: 18px;
+            }
+            
+            .up-hero p {
+                font-size: 11px;
+            }
+            
+            .up-table {
+                width: 140px;
+                height: 110px;
+            }
+        }
+
+        @media (max-height: 500px) and (orientation: landscape) {
+            .up-hero {
+                padding: 24px 16px;
+                min-height: auto;
+            }
+            
+            .up-hero h1 {
+                font-size: 22px;
+            }
+            
+            .up-table {
+                width: 160px;
+                height: 120px;
+            }
+            
+            .up-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            
+            .up-product-image {
+                height: 100px;
+            }
+        }
+
+        @media print {
+            .up-header,
+            .up-catstrip,
+            .up-cart-btn,
+            .up-hero-cta,
+            .up-add-btn,
+            .up-wishlist-btn,
+            .up-drawer,
+            .up-overlay,
+            .up-modal-overlay,
+            .up-offer-banner,
+            .up-toast,
+            .up-hero-noodles,
+            .up-hero-flakes {
+                display: none !important;
+            }
+            
+            .up-hero {
+                background: white !important;
+                color: black !important;
+                padding: 20px !important;
+            }
+            
+            .up-hero h1 span {
+                color: black !important;
+                background: none !important;
+                -webkit-text-fill-color: black !important;
+            }
+            
+            .up-grid {
+                display: block !important;
+            }
+            
+            .up-card {
+                break-inside: avoid;
+                page-break-inside: avoid;
+                margin-bottom: 16px;
+                border: 1px solid #ddd;
+                padding: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app">
+        <!-- Header -->
+        <header class="up-header">
+            <div class="up-logo" onclick="resetShop()">
+                <span class="up-display">K FOODS</span>
+                <span class="up-ko">스리랑카</span>
+                <span class="up-ko">Sri Lanka</span>
+            </div>
+            <nav class="up-nav">
+                <span onclick="setCategory('all')">Shop All</span>
+                <span onclick="setCategory('noodle')">Noodles</span>
+                <span onclick="setCategory('cup')">Cup Noodles</span>
+                <span onclick="setCategory('snack')">Snacks</span>
+                <span onclick="setCategory('meal')">Meal Kits</span>
+            </nav>
+            <div class="up-header-actions">
+                <button class="up-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">
+                    ☰
+                </button>
+                <button class="up-cart-btn" onclick="toggleCart()">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                    Cart
+                    <span class="up-cart-count" id="cartCount">0</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Mobile Navigation -->
+        <div class="up-mobile-nav" id="mobileNav">
+            <span onclick="setCategory('all'); closeMobileMenu();">Shop All</span>
+            <span onclick="setCategory('noodle'); closeMobileMenu();">Noodles</span>
+            <span onclick="setCategory('cup'); closeMobileMenu();">Cup Noodles</span>
+            <span onclick="setCategory('snack'); closeMobileMenu();">Snacks</span>
+            <span onclick="setCategory('meal'); closeMobileMenu();">Meal Kits</span>
+        </div>
+
+        <!-- Hero -->
+        <section class="up-hero">
+            <div class="up-hero-noodles">
+                <span class="up-hero-noodle">🍜</span>
+                <span class="up-hero-noodle">🌶️</span>
+                <span class="up-hero-noodle">🥢</span>
+                <span class="up-hero-noodle">🍲</span>
+                <span class="up-hero-noodle">🔥</span>
+                <span class="up-hero-noodle">🍜</span>
+                <span class="up-hero-noodle">🌶️</span>
+                <span class="up-hero-noodle">🥢</span>
+            </div>
+
+            <div class="up-hero-flakes">
+                <div class="up-flake"></div>
+                <div class="up-flake"></div>
+                <div class="up-flake"></div>
+                <div class="up-flake"></div>
+                <div class="up-flake"></div>
+                <div class="up-flake"></div>
+                <div class="up-flake"></div>
+                <div class="up-flake"></div>
+            </div>
+
+            <div class="up-offer-banner" id="offerBanner" style="display:none">
+                <img src="offer.jpg" alt="Special offer - up to 30% off, limited time" onclick="document.querySelector('.up-grid').scrollIntoView({ behavior: 'smooth', block: 'start' })" />
+            </div>
+
+            <div class="up-hero-copy">
+                <div class="up-hero-eyebrow">✦ Authentic Korean Noodles in Sri Lanka</div>
+                <h1>Korea's <span>most-loved</span> noodles,<br />delivered to your door</h1>
+                <p>Straight from Korea — Shin Ramyun, Hotdak, Yopokki, Chocopie and more. Full menu and prices in store.</p>
+                <button class="up-hero-cta" onclick="document.querySelector('.up-grid').scrollIntoView({ behavior: 'smooth', block: 'start' })">
+                    <span>Shop the noodles</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </button>
+                <div class="up-hero-stats">
+                    <div class="up-stat"><span class="up-stat-value">33+</span><span class="up-stat-label">Products</span></div>
+                    <div class="up-stat"><span class="up-stat-value">⭐ 4.9</span><span class="up-stat-label">Customer Rating</span></div>
+                    <div class="up-stat"><span class="up-stat-value">📍 Sri Lanka</span><span class="up-stat-label">Local Delivery</span></div>
+                </div>
+            </div>
+            <div class="up-table" id="heroTable">
+                <!-- Hero dishes rendered by JS -->
+            </div>
+        </section>
+
+        <!-- Category Strip -->
+        <div class="up-catstrip" id="categoryStrip">
+            <!-- Categories rendered by JS -->
+            <div class="up-searchwrap">
+                <span class="up-search-icon">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                </span>
+                <input type="text" id="searchInput" placeholder="Search" oninput="handleSearch(this.value)" />
+            </div>
+        </div>
+
+        <!-- Product Grid -->
+        <div class="up-grid" id="productGrid">
+            <!-- Products rendered by JS -->
+        </div>
+
+        <!-- Footer -->
+        <footer class="up-footer">
+            <strong>K Food Sri Lanka</strong> — Authentic Korean noodles delivered to your door.<br />
+            📍 Colombo, Homagama | 📞 +94 70 484 5611
+        </footer> 
+
+        <!-- Cart Drawer -->
+        <div id="cartOverlay" class="up-overlay" style="display:none" onclick="toggleCart()"></div>
+        <div class="up-drawer" id="cartDrawer" style="display:none">
+            <div class="up-drawer-head">
+                <span class="up-display">Your Cart</span>
+                <button onclick="toggleCart()">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </button>
+            </div>
+            <div class="up-drawer-body" id="cartBody">
+                <!-- Cart items rendered by JS -->
+            </div>
+            <div class="up-drawer-foot" id="cartFooter" style="display:none">
+                <div class="up-row"><span>Subtotal</span><span id="subtotalDisplay">Rs. 0.00</span></div>
+                <div class="up-row"><span>Shipping</span><span id="shippingDisplay">Free</span></div>
+                <div class="up-row total"><span>Total</span><span id="totalDisplay">Rs. 0.00</span></div>
+                <button class="up-checkout-btn" onclick="beginCheckout()">Checkout</button>
+            </div>
+            <div class="up-empty-cart" id="emptyCartMsg">Your cart is empty. Go fill it with something delicious.</div>
+        </div>
+
+        <!-- Checkout Modal -->
+        <div id="checkoutModal" class="up-modal-overlay" style="display:none">
+            <div class="up-modal" id="checkoutContent">
+                <!-- Checkout content rendered by JS -->
+            </div>
+        </div>
+
+        <!-- Toast -->
+        <div id="toast" class="up-toast" style="display:none"></div>
+    </div>
+
+    <script>
+        // ===== DATA - K Food Sri Lanka Products (from WON MART price list) =====
+        const CATEGORIES = [
+            { id: 'all', ko: '전체', en: 'All', icon: '🍽️' },
+            { id: 'noodle', ko: '면류', en: 'Noodles', icon: '🍜' },
+            { id: 'cup', ko: '컵라면', en: 'Cup Noodles', icon: '🥤' },
+            { id: 'snack', ko: '간식', en: 'Snacks', icon: '🍿' },
+            { id: 'meal', ko: '즉석식품', en: 'Meal Kits', icon: '🍲' },
+        ];
+
+        const PRODUCTS = [
+            {
+                id: 'p1', cat: 'noodle', en: 'Shin Ramyun', ko: '신라면',
+                price: 490, weight: '120g', emoji: '🍜', color: '#E53E3E',
+                badge: 'Bestseller', brand: 'NONGSHIM',
+                desc: "Korea's classic — rich beef broth with a warm, savoury kick.",
+                image:"Shin Ramyun.jpg"            },
+            {
+                id: 'p2', cat: 'noodle', en: 'Shin Ramyun Stir Fry Cheese', ko: '신라면 볶음면 스터',
+                price: 580, weight: '136g', emoji: '🧀', color: '#D69E2E',
+                brand: 'NONGSHIM',
+                desc: "Stir-fried noodles with a creamy, cheesy spicy sauce.",
+                image:"Shin Ramyun Stir Fry Cheese.jpg"            },
+            {
+                id: 'p3', cat: 'noodle', en: 'Shin Ramyun Toomba', ko: '신라면 툼바',
+                price: 580, weight: '137g', emoji: '🍲', color: '#D69E2E',
+                brand: 'NONGSHIM',
+                desc: "Creamy tomato-cream style spicy noodle soup.",
+                image:"Shin Ramyun Toomba.jpg"
+            },
+            {
+                id: 'p4', cat: 'noodle', en: 'Shin Red Super Spicy', ko: '신 레드 슈퍼 스파이시',
+                price: 595, weight: '120g', emoji: '🌶️', color: '#C53030',
+                badge: '🔥 Extra Spicy', brand: 'NONGSHIM',
+                desc: "An even hotter take on the Shin classic — for heat seekers.",
+                image:"Shin Red Super Spicy.jpg"},
+            {
+                id: 'p5', cat: 'noodle', en: 'Shin Ramyun Spicy Chicken', ko: '신라면 매운치킨',
+                price: 580, weight: '120g', emoji: '🐔', color: '#E53E3E',
+                brand: 'NONGSHIM',
+                desc: "Shin's signature broth with a spicy chicken twist.",
+                image:"Shin Ramyun Spicy Chicken.jpeg"},
+            {
+                id: 'p6', cat: 'noodle', en: 'Ansungtangmyun', ko: '안성탕면',
+                price: 580, weight: '125g', emoji: '🍜', color: '#D69E2E',
+                brand: 'NONGSHIM',
+                desc: "A milder, hearty Korean noodle soup with deep savoury flavour.",
+                image:"Ansungtangmyun.jpg"},
+            {
+                id: 'p7', cat: 'noodle', en: 'Shin Ramyun Black', ko: '신라면 블랙',
+                price: 795, weight: '130g', emoji: '🍜', color: '#1A202C',
+                badge: 'New / Premium', brand: 'NONGSHIM',
+                desc: "Premium edition with a richer, deeper beef bone broth.",
+                image:"Shin Ramyun Black.jpg"},
+            {
+                id: 'p8', cat: 'cup', en: 'Shin Ramyun Toomba Bowl', ko: '신라면 툼바 보울',
+                price: 795, weight: '113g', emoji: '🥣', color: '#D69E2E',
+                badge: 'New', brand: 'NONGSHIM',
+                desc: "Creamy Toomba flavour in a convenient grab-and-go bowl.",
+                image:"Shin Ramyun Toomba Bowl.jpg"},
+            {
+                id: 'p9', cat: 'cup', en: 'Shin Ramyun Cup', ko: '신컵',
+                price: 560, weight: '68g', emoji: '🥤', color: '#E53E3E',
+                brand: 'NONGSHIM',
+                desc: "The same gourmet-spicy broth, in a quick grab-and-go cup.",
+                image:"Shin Ramyun Cup.jpg"},
+            {
+                id: 'p10', cat: 'noodle', en: 'Shin Ramyun Stir Fry', ko: '신라면 볶음면',
+                price: 595, weight: '131g', emoji: '🍝', color: '#E53E3E',
+                brand: 'NONGSHIM',
+                desc: "Stir-fried version of the Shin classic — bold and saucy.",
+                image:"Shin Ramyun Stir Fry.png"},
+            {
+                id: 'p11', cat: 'noodle', en: 'Cham Pong', ko: '참퐁',
+                price: 595, weight: '124g', emoji: '🦐', color: '#C53030',
+                brand: 'NONGSHIM',
+                desc: "Spicy seafood-style noodle soup, Korean-Chinese favourite.",
+                image:"Cham Pong.png"},
+            {
+                id: 'p12', cat: 'noodle', en: 'Hotdak Original', ko: '핫닭 오리지널',
+                price: 595, weight: '140g', emoji: '🔥', color: '#C53030',
+                brand: 'NONGSHIM',
+                desc: "Fiery hot chicken flavour noodles with serious heat.",
+                image:"Hotdak Original.jpg"},
+            {
+                id: 'p13', cat: 'noodle', en: 'Hotdak Cheese', ko: '핫닭 치즈',
+                price: 595, weight: '150g', emoji: '🧀', color: '#D69E2E',
+                brand: 'NONGSHIM',
+                desc: "Spicy hot chicken noodles balanced with creamy cheese.",
+                image:"Hotdak Cheese.jpg"},
+            {
+                id: 'p14', cat: 'noodle', en: 'Hotdak Carbo', ko: '핫닭 카르보',
+                price: 595, weight: '140g', emoji: '🍝', color: '#D69E2E',
+                brand: 'NONGSHIM',
+                desc: "Creamy carbonara-style spicy hot chicken noodles.",
+                image:"Hotdak Carbo.jpg"},
+            {
+                id: 'p15', cat: 'snack', en: 'Yopokki Cheese Topokki', ko: '요뽀끼 치즈 떡볶이',
+                price: 950, weight: '120g', emoji: '🧀', color: '#D69E2E',
+                brand: 'YOPOKKI',
+                desc: "Chewy Korean rice cakes in a creamy cheese sauce.",
+                image:"Yopokki Cheese Topokki.jpg"            
+            },
+            {
+                id: 'p16', cat: 'snack', en: 'Yopokki Hot & Spicy Topokki', ko: '요뽀끼 매운맛 떡볶이',
+                price: 950, weight: '120g', emoji: '🌶️', color: '#E53E3E',
+                brand: 'YOPOKKI',
+                desc: "Chewy rice cakes in a fiery, sweet-spicy sauce.",
+                image:"Yopokki Hot & Spicy Topokki.jpg"},
+            {
+                id: 'p17', cat: 'snack', en: 'Seasoned Seaweed Dosirak', ko: '조미 김 도시락',
+                price: 570, weight: '15g (3x24)', emoji: '🍙', color: '#38A169',
+                brand: 'DOSIRAK',
+                desc: "Crispy roasted seaweed with olive oil and green tea powder.",
+                image:"Seasoned Seaweed Dosirak.jpg"},
+            {
+                id: 'p18', cat: 'snack', en: "O'Star Kimchi", ko: '오스타 김치맛',
+                price: 490, weight: '30g', emoji: '🍟', color: '#E53E3E',
+                brand: "O'STAR",
+                desc: "Crunchy corn snack with tangy Korean kimchi flavour.",
+                image:"O'Star Kimchi.JPG"            },
+            {
+                id: 'p19', cat: 'snack', en: "O'Star Chicken BBQ", ko: '오스타 치킨 바베큐',
+                price: 490, weight: '30g', emoji: '🍗', color: '#D69E2E',
+                brand: "O'STAR",
+                desc: "Smoky chicken BBQ flavoured corn snack.",
+                image:"O'Star Chicken BBQ.jpg"            },
+            {
+                id: 'p20', cat: 'snack', en: "O'Star New York Beef Steak", ko: '오스타 뉴욕 스테이크',
+                price: 490, weight: '30g', emoji: '🥩', color: '#744210',
+                brand: "O'STAR",
+                desc: "Savoury New York style beef steak flavoured corn snack.",
+                image:"O'Star New York Beef Steak.jpg"            },
+            {
+                id: 'p21', cat: 'snack', en: 'Chocopie', ko: '초코파이',
+                price: 1350, weight: '180g', emoji: '🍫', color: '#744210',
+                badge: 'Classic', brand: 'ORION',
+                desc: "Marshmallow-filled chocolate snack, a Korean childhood favourite.",
+                image:"Chocopie.png"            },
+            {
+                id: 'p22', cat: 'snack', en: 'Chocopie Dark', ko: '초코파이 다크',
+                price: 1650, weight: '180g', emoji: '🍫', color: '#1A202C',
+                brand: 'ORION',
+                desc: "The classic Chocopie with rich dark chocolate coating.",
+                image:"Chocopie Dark.png"            },
+            {
+                id: 'p23', cat: 'snack', en: 'Chocopie Fluffy (Big Box)', ko: '초코파이 플러피',
+                price: 2900, weight: '468g', emoji: '🍫', color: '#744210',
+                badge: 'Family Size', brand: 'ORION',
+                desc: "The big family-size box of marshmallow Chocopies.",
+                image:"Chocopie Fluffy (Big Box).jpg"               },
+            {
+                id: 'p24', cat: 'snack', en: "Welch's Drink", ko: '웰치스 음료',
+                price: 490, weight: '355ml', emoji: '🥤', color: '#805AD5',
+                badge: 'New', brand: "WELCH'S",
+                desc: "Refreshing fruit-flavoured soft drink, straight from Korea.",
+                image:"Welch's Drink.jpg"          
+            },
+            {
+                id: 'p25', cat: 'meal', en: 'Braised Spicy Chicken', ko: '닭볶음탕',
+                price: 0, weight: '500g', emoji: '🍗', color: '#8B1A1A',
+                badge: 'New', brand: 'MAMICOOK',
+                desc: "Ready-to-heat Korean braised chicken in a rich, spicy red sauce.",
+                image:"Braised Spicy Chicken.png"
+            },
+            {
+                id: 'p26', cat: 'meal', en: 'Galbitang (Short Rib Soup)', ko: '갈비탕',
+                price: 0, weight: '700g', emoji: '🍲', color: '#8B1A1A',
+                badge: 'Best Choice', brand: 'MAMICOOK',
+                desc: "Comforting Korean beef short rib soup, ready to heat and serve.",
+                image:"Galbitang.png"
+            },
+            {
+                id: 'p27', cat: 'snack', en: "O'Star Premium Beef Steak Chips", ko: '오스타 프리미엄 뉴욕 스테이크',
+                price: 0, weight: '60g', emoji: '🥩', color: '#556B2F',
+                badge: 'Premium', brand: "O'STAR",
+                desc: "Ridged premium potato chips with a savoury New York steak flavour.",
+                image:"O'Star Premium Beef Steak.png"
+            },
+            {
+                id: 'p28', cat: 'snack', en: "O'Star Premium Chicken BBQ Chips", ko: '오스타 프리미엄 치킨 바베큐',
+                price: 0, weight: '60g', emoji: '🍗', color: '#D2691E',
+                brand: "O'STAR",
+                desc: "Ridged premium potato chips with a smoky chicken BBQ flavour.",
+                image:"O'Star Premium Chicken BBQ.png"
+            },
+            {
+                id: 'p29', cat: 'snack', en: "O'Star Premium Kimchi Chips", ko: '오스타 프리미엄 김치맛',
+                price: 0, weight: '60g', emoji: '🌶️', color: '#C53030',
+                brand: "O'STAR",
+                desc: "Ridged premium potato chips with a tangy Korean kimchi flavour.",
+                image:"O'Star Premium Kimchi.png"
+            },
+            {
+                id: 'p30', cat: 'snack', en: "Welch's Zero Cherry Strawberry", ko: '웰치스 제로 체리스트로베리',
+                price: 0, weight: '355ml', emoji: '🍒', color: '#D53F8C',
+                badge: 'Zero Sugar', brand: "WELCH'S",
+                desc: "Sugar-free sparkling soda with cherry-strawberry flavour.",
+                image:"Welchs Zero Cherry Strawberry.png"
+            },
+            {
+                id: 'p31', cat: 'snack', en: "Welch's Zero Shine Muscat", ko: '웰치스 제로 샤인머스캣',
+                price: 0, weight: '355ml', emoji: '🍈', color: '#38A169',
+                badge: 'Zero Sugar', brand: "WELCH'S",
+                desc: "Sugar-free sparkling soda with sweet shine muscat grape flavour.",
+                image:"Welchs Zero Shine Muscat.png"
+            },
+            {
+                id: 'p32', cat: 'snack', en: "Welch's Grape Soda", ko: '웰치스 포도 음료',
+                price: 0, weight: '355ml', emoji: '🍇', color: '#6B21A8',
+                brand: "WELCH'S",
+                desc: "Classic sparkling grape soda, sweet and fruity.",
+                image:"Welchs Grape.png"
+            },
+            {
+                id: 'p33', cat: 'snack', en: "Kwang Cheon Kim Seasoned Seaweed", ko: '광천김 조미김',
+                price: 0, weight: '5g x 3', emoji: '🍙', color: '#38A169',
+                brand: 'KWANG CHEON KIM',
+                desc: "Crispy roasted seaweed brushed with olive oil and green tea, 3-pack.",
+                image:"Kwang Cheon Kim Seasoned Seaweed.png"
+            },
+        ];
+
+        const HERO_DISHES = [
+            { emoji: '🍜', color: '#E53E3E', size: 108, top: 6, left: 4, rot: -6 },
+            { emoji: '🌶️', color: '#C53030', size: 76, top: 2, left: 34, rot: 4 },
+            { emoji: '🥤', color: '#D69E2E', size: 84, top: 20, left: 56, rot: -3 },
+            { emoji: '🔥', color: '#E53E3E', size: 96, top: 58, left: 8, rot: 5 },
+            { emoji: '🍟', color: '#D69E2E', size: 70, top: 62, left: 66, rot: -5 },
+            { emoji: '🍫', color: '#744210', size: 64, top: 4, left: 82, rot: 8 },
+            { emoji: '🍙', color: '#38A169', size: 72, top: 66, left: 40, rot: 3 },
+        ];
+
+        // ===== OFFER POPUP CONFIG =====
+        // Set to false to turn the popup off completely, or set OFFER_START / OFFER_END
+        // (format 'YYYY-MM-DD') to auto-hide it once the offer period ends.
+        const OFFER_ACTIVE = true;
+        const OFFER_START = null; // e.g. '2026-07-24'
+        const OFFER_END = null;   // e.g. '2026-08-03'
+
+        function isOfferLive() {
+            if (!OFFER_ACTIVE) return false;
+            const now = new Date();
+            if (OFFER_START && now < new Date(OFFER_START)) return false;
+            if (OFFER_END && now > new Date(OFFER_END + 'T23:59:59')) return false;
+            return true;
+        }
+
+        // ===== STATE =====
+        let state = {
+            category: 'all',
+            query: '',
+            cart: {},
+            wishlist: {},
+            cartOpen: false,
+            step: 0,
+            shipping: { name: '', address: '', city: '', zip: '' },
+            orderNo: null,
+            toast: null,
+            toastTimer: null,
+            mobileOpen: false,
+        };
+
+        // ===== HELPERS =====
+        function money(n) { return 'Rs. ' + n.toFixed(2); }
+
+        function getProduct(id) { return PRODUCTS.find(p => p.id === id); }
+
+        function getCartItems() {
+            return Object.entries(state.cart)
+                .filter(([, qty]) => qty > 0)
+                .map(([id, qty]) => ({ ...getProduct(id), qty }));
+        }
+
+        function getItemCount() {
+            return getCartItems().reduce((s, i) => s + i.qty, 0);
+        }
+
+        function getSubtotal() {
+            return getCartItems().reduce((s, i) => s + i.price * i.qty, 0);
+        }
+
+        function getShipping() {
+            const sub = getSubtotal();
+            // Free shipping over Rs. 5,000
+            return sub > 5000 || sub === 0 ? 0 : 550;
+        }
+
+        function getTotal() {
+            return getSubtotal() + getShipping();
+        }
+
+        // ===== MOBILE MENU =====
+        function toggleMobileMenu() {
+            state.mobileOpen = !state.mobileOpen;
+            document.getElementById('mobileNav').classList.toggle('open', state.mobileOpen);
+        }
+
+        function closeMobileMenu() {
+            state.mobileOpen = false;
+            document.getElementById('mobileNav').classList.remove('open');
+        }
+
+        // ===== OFFER BANNER =====
+        function showOfferBanner() {
+            document.getElementById('offerBanner').style.display = 'flex';
+        }
+
+        // ===== RENDER FUNCTIONS =====
+
+        function renderHero() {
+            const container = document.getElementById('heroTable');
+            const isMobile = window.innerWidth <= 600;
+            const scale = isMobile ? 0.6 : 1;
+            
+            container.innerHTML = HERO_DISHES.map((d, i) => {
+                const size = Math.round(d.size * scale);
+                return `<div class="up-dish" style="--rot:${d.rot}deg;width:${size}px;height:${size}px;top:${d.top}%;left:${d.left}%;background:radial-gradient(circle at 35% 30%, ${d.color}dd, ${d.color});font-size:${size*0.4}px;transform:rotate(${d.rot}deg)">${d.emoji}</div>`;
+            }).join('');
+        }
+
+        function renderCategories() {
+            const container = document.getElementById('categoryStrip');
+            const chips = CATEGORIES.map(c =>
+                `<button class="up-cat-chip ${state.category === c.id ? 'active' : ''}" onclick="setCategory('${c.id}')">
+                    <span class="up-chip-icon">${c.icon}</span>
+                    ${c.en} <span class="up-chip-ko">${c.ko}</span>
+                </button>`
+            ).join('');
+            const searchWrap = container.querySelector('.up-searchwrap');
+            container.innerHTML = chips + searchWrap.outerHTML;
+            const newSearch = container.querySelector('.up-searchwrap');
+            newSearch.innerHTML = `
+                <span class="up-search-icon">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                </span>
+                <input type="text" id="searchInput" placeholder="Search" oninput="handleSearch(this.value)" value="${state.query}" />
+            `;
+        }
+
+        function renderProducts() {
+            const container = document.getElementById('productGrid');
+            const filtered = PRODUCTS.filter(p => {
+                const matchesCat = state.category === 'all' || p.cat === state.category;
+                const q = state.query.trim().toLowerCase();
+                const matchesQuery = q === '' || p.en.toLowerCase().includes(q) || p.ko.includes(q);
+                return matchesCat && matchesQuery;
+            });
+
+            if (filtered.length === 0) {
+                container.innerHTML = `<div class="up-empty">No products match that search — try another category.</div>`;
+                return;
+            }
+
+            container.innerHTML = filtered.map(p => {
+                const inWishlist = state.wishlist[p.id] || false;
+                const badgeHtml = p.badge ? `<span class="up-card-badge">${p.badge}</span>` : '';
+                const descHtml = p.desc ? `<div class="up-card-desc">${p.desc}</div>` : '';
+                const brandHtml = p.brand ? `<div class="up-card-brand">${p.brand}</div>` : '';
+                const weightHtml = p.weight ? `<div class="up-card-weight">${p.weight}</div>` : '';
+
+                const imageHtml = p.image ? `
+                    <div class="up-product-image">
+                        <img src="${p.image}" alt="${p.en}" loading="lazy" />
+                    </div>
+                ` : `
+                    <div class="up-product-image">
+                        <div class="up-image-placeholder">
+                            <span class="up-emoji-big">${p.emoji}</span>
+                            <span class="up-brand-tag">${p.brand || ''}</span>
+                        </div>
+                    </div>
+                `;
+                
+                return `
+                    <div class="up-card">
+                        ${badgeHtml}
+                        <button class="up-wishlist-btn ${inWishlist ? 'active' : ''}" onclick="toggleWishlist('${p.id}')">
+                            ${inWishlist ? '❤️' : '🤍'}
+                        </button>
+                        ${imageHtml}
+                        ${brandHtml}
+                        <div class="up-card-en">${p.en}</div>
+                        <div class="up-card-ko">${p.ko}</div>
+                        ${descHtml}
+                        ${weightHtml}
+                        <div class="up-card-price">${money(p.price)}</div>
+                        <button class="up-add-btn" onclick="addToCart('${p.id}')">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                            Add to Cart
+                        </button>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function renderCart() {
+            const body = document.getElementById('cartBody');
+            const footer = document.getElementById('cartFooter');
+            const emptyMsg = document.getElementById('emptyCartMsg');
+            const countEl = document.getElementById('cartCount');
+
+            const items = getCartItems();
+            countEl.textContent = getItemCount();
+
+            if (items.length === 0) {
+                body.innerHTML = '';
+                footer.style.display = 'none';
+                emptyMsg.style.display = 'block';
+                return;
+            }
+
+            emptyMsg.style.display = 'none';
+            footer.style.display = 'block';
+
+            body.innerHTML = items.map(item => {
+                const imageHtml = item.image ? `
+                    <img src="${item.image}" alt="${item.en}" loading="lazy" />
+                ` : `
+                    <span class="up-emoji-sm">${item.emoji}</span>
+                `;
+                
+                return `
+                    <div class="up-line">
+                        <div class="up-line-image">
+                            ${imageHtml}
+                        </div>
+                        <div class="up-line-info">
+                            <div class="up-line-en">${item.en}</div>
+                            <div class="up-line-price">${money(item.price)} each</div>
+                        </div>
+                        <div class="up-qty">
+                            <button onclick="changeQty('${item.id}', -1)">−</button>
+                            <span>${item.qty}</span>
+                            <button onclick="changeQty('${item.id}', 1)">+</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            const sub = getSubtotal();
+            const ship = getShipping();
+            const total = getTotal();
+            document.getElementById('subtotalDisplay').textContent = money(sub);
+            document.getElementById('shippingDisplay').textContent = ship === 0 ? 'Free' : money(ship);
+            document.getElementById('totalDisplay').textContent = money(total);
+        }
+
+        function renderCheckout() {
+            const container = document.getElementById('checkoutContent');
+            const { step, shipping, orderNo } = state;
+
+            if (step === 0) {
+                document.getElementById('checkoutModal').style.display = 'none';
+                return;
+            }
+
+            document.getElementById('checkoutModal').style.display = 'flex';
+
+            if (step === 1) {
+                container.innerHTML = `
+                    <button class="up-modal-close" onclick="closeCheckout()">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                    </button>
+                    <div class="up-steps">
+                        <div class="up-step-dot done"></div>
+                        <div class="up-step-dot"></div>
+                        <div class="up-step-dot"></div>
+                    </div>
+                    <h2 class="up-display" style="font-size:20px;margin-bottom:4px;">Shipping details</h2>
+                    <p style="font-size:12px;opacity:0.6;margin-bottom:16px;">Where should we send your order?</p>
+                    <form onsubmit="submitShipping(event)">
+                        <div class="up-field">
+                            <label>Full name</label>
+                            <input required id="shipName" value="${shipping.name}" placeholder="Jane Kim" />
+                        </div>
+                        <div class="up-field">
+                            <label>Street address</label>
+                            <input required id="shipAddress" value="${shipping.address}" placeholder="123 Maple Street" />
+                        </div>
+                        <div class="up-field-row">
+                            <div class="up-field">
+                                <label>City</label>
+                                <input required id="shipCity" value="${shipping.city}" placeholder="Colombo" />
+                            </div>
+                            <div class="up-field">
+                                <label>ZIP</label>
+                                <input required id="shipZip" value="${shipping.zip}" placeholder="10000" />
+                            </div>
+                        </div>
+                        <button class="up-modal-submit" type="submit">
+                            Continue
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                        </button>
+                    </form>
+                `;
+            } else if (step === 2) {
+                container.innerHTML = `
+                    <button class="up-modal-close" onclick="closeCheckout()">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                    </button>
+                    <button class="up-modal-back" onclick="setStep(1)">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+                        Back
+                    </button>
+                    <div class="up-steps">
+                        <div class="up-step-dot done"></div>
+                        <div class="up-step-dot done"></div>
+                        <div class="up-step-dot"></div>
+                    </div>
+                    <h2 class="up-display" style="font-size:20px;margin-bottom:4px;">Payment</h2>
+                    <p style="font-size:12px;opacity:0.6;margin-bottom:16px;">This is a demo — no real payment is processed.</p>
+                    <form onsubmit="submitPayment(event)">
+                        <div class="up-field">
+                            <label>Card number</label>
+                            <input required placeholder="4242 4242 4242 4242" maxlength="19" />
+                        </div>
+                        <div class="up-field-row">
+                            <div class="up-field">
+                                <label>Expiry</label>
+                                <input required placeholder="MM/YY" />
+                            </div>
+                            <div class="up-field">
+                                <label>CVC</label>
+                                <input required placeholder="123" />
+                            </div>
+                        </div>
+                        <div class="up-row total" style="margin:14px 0;">
+                            <span>Total due</span>
+                            <span>${money(getTotal())}</span>
+                        </div>
+                        <button class="up-modal-submit" type="submit">
+                            Place order
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        </button>
+                    </form>
+                `;
+            } else if (step === 3) {
+                container.innerHTML = `
+                    <button class="up-modal-close" onclick="newOrder()">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                    </button>
+                    <div style="text-align:center;">
+                        <div class="up-confirm-icon">
+                            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                        </div>
+                        <h2 class="up-display" style="font-size:20px;margin-bottom:4px;">Order placed!</h2>
+                        <p style="font-size:12px;opacity:0.7;margin-bottom:4px;">Order number</p>
+                        <p style="font-weight:900;font-size:16px;margin-bottom:16px;">${orderNo}</p>
+                        <p style="font-size:12px;opacity:0.7;margin-bottom:18px;">
+                            Confirmation sent to ${shipping.name || 'your order'} at ${shipping.address ? `${shipping.address}, ${shipping.city} ${shipping.zip}` : 'your address'}.
+                            Total: ${money(getTotal())}.
+                        </p>
+                        <button class="up-modal-submit" onclick="newOrder()">Continue shopping</button>
+                    </div>
+                `;
+            }
+        }
+
+        function renderAll() {
+            renderProducts();
+            renderCart();
+            renderCheckout();
+        }
+
+        // ===== ACTIONS =====
+
+        function setCategory(cat) {
+            state.category = cat;
+            renderCategories();
+            renderProducts();
+            closeMobileMenu();
+        }
+
+        function handleSearch(value) {
+            state.query = value;
+            renderProducts();
+        }
+
+        function resetShop() {
+            state.category = 'all';
+            state.query = '';
+            document.getElementById('searchInput').value = '';
+            renderCategories();
+            renderProducts();
+            closeMobileMenu();
+        }
+
+        function addToCart(id) {
+            state.cart[id] = (state.cart[id] || 0) + 1;
+            const p = getProduct(id);
+            showToast(`✨ ${p.en} added`);
+            renderCart();
+        }
+
+        function changeQty(id, delta) {
+            const current = state.cart[id] || 0;
+            const next = Math.max(0, current + delta);
+            if (next === 0) {
+                delete state.cart[id];
+            } else {
+                state.cart[id] = next;
+            }
+            renderCart();
+        }
+
+        function toggleWishlist(id) {
+            state.wishlist[id] = !state.wishlist[id];
+            renderProducts();
+        }
+
+        function toggleCart() {
+            state.cartOpen = !state.cartOpen;
+            document.getElementById('cartDrawer').style.display = state.cartOpen ? 'flex' : 'none';
+            document.getElementById('cartOverlay').style.display = state.cartOpen ? 'block' : 'none';
+            if (state.cartOpen) renderCart();
+        }
+
+        function beginCheckout() {
+            state.cartOpen = false;
+            document.getElementById('cartDrawer').style.display = 'none';
+            document.getElementById('cartOverlay').style.display = 'none';
+            state.step = 1;
+            renderCheckout();
+        }
+
+        function submitShipping(e) {
+            e.preventDefault();
+            state.shipping.name = document.getElementById('shipName').value;
+            state.shipping.address = document.getElementById('shipAddress').value;
+            state.shipping.city = document.getElementById('shipCity').value;
+            state.shipping.zip = document.getElementById('shipZip').value;
+            state.step = 2;
+            renderCheckout();
+        }
+
+        function submitPayment(e) {
+            e.preventDefault();
+            const no = 'KF-' + String(Math.floor(100000 + Math.random() * 899999));
+            state.orderNo = no;
+            state.step = 3;
+            renderCheckout();
+        }
+
+        function setStep(step) {
+            state.step = step;
+            renderCheckout();
+        }
+
+        function closeCheckout() {
+            state.step = 0;
+            renderCheckout();
+        }
+
+        function newOrder() {
+            state.cart = {};
+            state.shipping = { name: '', address: '', city: '', zip: '' };
+            state.orderNo = null;
+            state.step = 0;
+            renderCart();
+            renderCheckout();
+            showToast('🎉 Order complete! Thank you!');
+        }
+
+        function showToast(msg) {
+            const el = document.getElementById('toast');
+            el.textContent = msg;
+            el.style.display = 'block';
+            clearTimeout(state.toastTimer);
+            state.toastTimer = setTimeout(() => {
+                el.style.display = 'none';
+            }, 2000);
+        }
+
+        // ===== WINDOW RESIZE =====
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                renderHero();
+            }, 250);
+        });
+
+        // ===== INIT =====
+        renderHero();
+        renderCategories();
+        renderProducts();
+        renderCart();
+        if (isOfferLive()) {
+            showOfferBanner();
+        }
+    </script>
+</body>
+</html>
