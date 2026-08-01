@@ -2576,48 +2576,10 @@
                         </button>
                     </form>
                 `;
+            
+                
+
             } else if (step === 2) {
-                container.innerHTML = `
-                    <button class="up-modal-close" onclick="closeCheckout()">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                    </button>
-                    <button class="up-modal-back" onclick="setStep(1)">
-                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-                        Back
-                    </button>
-                    <div class="up-steps">
-                        <div class="up-step-dot done"></div>
-                        <div class="up-step-dot done"></div>
-                        <div class="up-step-dot"></div>
-                    </div>
-                    <h2 class="up-display" style="font-size:20px;margin-bottom:4px;">Payment</h2>
-                    <p style="font-size:12px;opacity:0.6;margin-bottom:16px;">This is a demo — no real payment is processed.</p>
-                    <form onsubmit="submitPayment(event)">
-                        <div class="up-field">
-                            <label>Card number</label>
-                            <input required placeholder="4242 4242 4242 4242" maxlength="19" />
-                        </div>
-                        <div class="up-field-row">
-                            <div class="up-field">
-                                <label>Expiry</label>
-                                <input required placeholder="MM/YY" />
-                            </div>
-                            <div class="up-field">
-                                <label>CVC</label>
-                                <input required placeholder="123" />
-                            </div>
-                        </div>
-                        <div class="up-row total" style="margin:14px 0;">
-                            <span>Total due</span>
-                            <span>${money(getTotal())}</span>
-                        </div>
-                        <button class="up-modal-submit" type="submit">
-                            Place order
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                        </button>
-                    </form>
-                `;
-            } else if (step === 3) {
                 container.innerHTML = `
                     <button class="up-modal-close" onclick="newOrder()">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
@@ -2637,6 +2599,31 @@
                     </div>
                 `;
             }
+        }
+
+        // Builds the order message and opens WhatsApp with delivery + order details pre-filled
+        function sendOrderToWhatsApp() {
+            const phone = "94704845611"; // Your WhatsApp number
+
+            let message = "🛒 *NEW ORDER - K FOOD SRI LANKA*\n\n";
+
+            message += "Customer\n";
+            message += "Name: " + state.shipping.name + "\n";
+            message += "Address: " + state.shipping.address + "\n";
+            message += "City: " + state.shipping.city + "\n";
+            message += "ZIP: " + state.shipping.zip + "\n\n";
+
+            message += "Products\n";
+
+            getCartItems().forEach(item => {
+                message += "- " + item.en + " x" + item.qty + " = Rs." + (item.price * item.qty) + "\n";
+            });
+
+            message += "\nTotal: Rs." + getTotal();
+
+            const url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
+
+            window.open(url, "_blank");
         }
 
         function renderAll() {
@@ -2712,15 +2699,14 @@
             state.shipping.address = document.getElementById('shipAddress').value;
             state.shipping.city = document.getElementById('shipCity').value;
             state.shipping.zip = document.getElementById('shipZip').value;
-            state.step = 2;
-            renderCheckout();
-        }
 
-        function submitPayment(e) {
-            e.preventDefault();
             const no = 'KF-' + String(Math.floor(100000 + Math.random() * 899999));
             state.orderNo = no;
-            state.step = 3;
+
+            // Send delivery details + order summary straight to WhatsApp
+            sendOrderToWhatsApp();
+
+            state.step = 2;
             renderCheckout();
         }
 
@@ -2771,6 +2757,7 @@
         if (isOfferLive()) {
             showOfferBanner();
         }
+
     </script>
 </body>
 </html>
