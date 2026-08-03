@@ -206,7 +206,7 @@ const PRODUCTS = [
         image:"Welchs Zero Shine Muscat.png"
     },
     {
-        id: 'p32', cat: 'snack', en: "Welch's Grape Soda", ko: '웰치스 포도 음료',
+        id: 'p32', cat: 'snack', en: "Welch's Grape Soda", ko: '웰치스 포도 음료', 
         price: 0, weight: '355ml', emoji: '🍇', color: '#6B21A8',
         brand: "WELCH'S",
         desc: "Classic sparkling grape soda, sweet and fruity.",
@@ -226,59 +226,66 @@ const PRODUCTS = [
         price: 640, weight: '120g', emoji: '🍜', color: '#C53030',
         brand: 'NONGSHIM',
         desc: "Shin Ramyun's classic broth with a tangy kimchi twist.",
+        image:"Shin Ramyun Kimchi.jpg"
+       
     },
     {
         id: 'p35', cat: 'noodle', en: 'Shin Ramyun Chapagetti', ko: '신라면 짜파게티',
         price: 640, weight: '140g', emoji: '🍝', color: '#744210',
         brand: 'NONGSHIM',
         desc: "Savoury black bean sauce noodles, a Korean-Chinese favourite.",
+       image:"Shin Ramyun Chapagetti.jpg"
     },
     {
         id: 'p36', cat: 'noodle', en: 'Neoguri Spicy', ko: '너구리 매운맛',
         price: 640, weight: '120g', emoji: '🦑', color: '#D69E2E',
         brand: 'NONGSHIM',
         desc: "Thick, chewy udon-style noodles in a spicy seafood broth.",
+        image:"Neoguri Spicy.jpg"
     },
-    {
-        id: 'p37', cat: 'meal', en: 'Pork Kimchi Stew', ko: '돼지고기 김치찜',
-        price: 1800, weight: '400g', emoji: '🍲', color: '#8B1A1A',
-        desc: "Ready-to-heat spicy pork and kimchi stew.",
-    },
+    
     {
         id: 'p38', cat: 'cup', en: 'Lazo Cup', ko: '라조 컵',
         price: 170, emoji: '🥤', color: '#718096',
         brand: 'LAZO',
         desc: "Compact instant cup noodle — quick and convenient.",
+        image:"lazo.jpg"
+
     },
     {
         id: 'p39', cat: 'drink', en: 'Onecup Peach Iced Tea', ko: '원컵 복숭아 아이스티',
         price: 630, weight: '230ml', emoji: '🍑', color: '#F6AD55',
         brand: 'ONECUP',
         desc: "Refreshing peach-flavoured iced tea.",
+         image:"icetea.jpg"
     },
     {
         id: 'p40', cat: 'drink', en: 'Onecup Bluelemon Ade', ko: '원컵 블루레몬에이드',
         price: 630, weight: '230ml', emoji: '🍋', color: '#3182CE',
         brand: 'ONECUP',
         desc: "Zesty blue lemon ade, sweet and citrusy.",
+        image:"Bluelemon.jpg"
     },
     {
         id: 'p41', cat: 'drink', en: 'Onecup Blueberry Ade', ko: '원컵 블루베리에이드',
         price: 630, weight: '230ml', emoji: '🫐', color: '#5A67D8',
         brand: 'ONECUP',
         desc: "Fruity blueberry ade, cool and refreshing.",
+        image:"Onecup Blueberry Ade.jpg"
     },
     {
         id: 'p42', cat: 'drink', en: 'Onecup Watermelon Ade', ko: '원컵 수박에이드',
         price: 630, weight: '230ml', emoji: '🍉', color: '#38A169',
         brand: 'ONECUP',
         desc: "Sweet watermelon ade, perfect for a hot day.",
+        image:"Onecup Watermelon Ade.jpg"
     },
     {
         id: 'p43', cat: 'drink', en: 'Onecup Green Grape Ade', ko: '원컵 청포도에이드',
         price: 630, weight: '230ml', emoji: '🍏', color: '#68A063',
         brand: 'ONECUP',
         desc: "Crisp green grape ade with a light, sweet flavour.",
+        image:"Onecup Green Grape Ade.jpg"
     },
     // ===== UPDATED ENTRIES — paste these over the matching id blocks in PRODUCTS =====
 
@@ -372,6 +379,7 @@ const PRODUCTS = [
         price: 0, comingSoon: true, weight: '', emoji: '🍜', color: '#C53030',
         badge: 'Coming Soon', brand: 'NONGSHIM',
         desc: "Stir-fried noodles with a bold, tangy kimchi kick.",
+      
     },
     {
         id: 'p57', cat: 'noodle', en: 'Tomyum Stir Fry', ko: '똠얌 볶음면',
@@ -379,29 +387,21 @@ const PRODUCTS = [
         badge: 'Coming Soon', brand: 'NONGSHIM',
         desc: "Stir-fried noodles with a zesty, aromatic tom yum flavour.",
     },
-    {
-        id: 'p58', cat: 'noodle', en: 'Yukgaejang', ko: '육개장 라면',
-        price: 0, comingSoon: true, weight: '', emoji: '🍲', color: '#8B1A1A',
-        badge: 'Coming Soon', brand: 'NONGSHIM',
-        desc: "Spicy Korean shredded beef soup noodles, hearty and warming.",
-    },
-    {
-        id: 'p59', cat: 'meal', en: 'Black Goat Tang', ko: '흑염소탕',
-        price: 0, comingSoon: true, weight: '', emoji: '🍲', color: '#8B1A1A',
-        badge: 'Coming Soon', brand: 'MAMICOOK',
-        desc: "Ready-to-heat traditional Korean black goat soup.",
-    },
+    
     {
         id: 'p60', cat: 'drink', en: 'Americano Hazelnut Flavor', ko: '아메리카노 헤이즐넛향',
         price: 0, comingSoon: true, weight: '', emoji: '☕', color: '#744210',
         badge: 'Coming Soon', brand: 'ONECUP',
         desc: "Smooth iced americano with a warm hazelnut aroma.",
+                image: ".jpg",
+
     },
     {
         id: 'p61', cat: 'snack', en: 'Potato Chips', ko: '포테토칩',
         price: 0, comingSoon: true, weight: '', emoji: '🥔', color: '#D69E2E',
         badge: 'Coming Soon',
         desc: "Classic crispy potato chips.",
+        image: ".jpg",
     },
 ];
 
