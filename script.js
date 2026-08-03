@@ -179,7 +179,7 @@ const PRODUCTS = [
         price: 630, weight: '230ml', emoji: '🍋', color: '#3182CE',
         brand: 'ONECUP',
         desc: "Zesty blue lemon ade, sweet and citrusy.",
-        image:"Bluelemon.jpg"
+        image:"bluelemon.jpg"
     },
     {
         id: 'p41', cat: 'drink', en: 'Onecup Blueberry Ade', ko: '원컵 블루베리에이드',
@@ -257,7 +257,7 @@ const PRODUCTS = [
     id: 'p51', cat: 'drink', en: 'Aloe Vera Drink (Small)', ko: '알로에 음료 (소)',
     price: 690, weight: '500ml', emoji: '🌵', color: '#38A169',
     desc: "Refreshing aloe vera drink with real aloe pulp.",
-    image: "Aloe Vera Drink (Small).jpg",
+    image: "okf.jpg",
 },
 {
     id: 'p52', cat: 'snack', en: 'Onion Rings', ko: '어니언 링',
