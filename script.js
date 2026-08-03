@@ -113,24 +113,7 @@ const PRODUCTS = [
         brand: 'DOSIRAK',
         desc: "Crispy roasted seaweed with olive oil and green tea powder.",
         image:"Seasoned Seaweed Dosirak.jpg"},
-    {
-        id: 'p18', cat: 'snack', en: "O'Star Kimchi", ko: '오스타 김치맛',
-        price: 490, weight: '30g', emoji: '🍟', color: '#E53E3E',
-        brand: "O'STAR",
-        desc: "Crunchy corn snack with tangy Korean kimchi flavour.",
-        image:"O'Star Kimchi.JPG"            },
-    {
-        id: 'p19', cat: 'snack', en: "O'Star Chicken BBQ", ko: '오스타 치킨 바베큐',
-        price: 490, weight: '30g', emoji: '🍗', color: '#D69E2E',
-        brand: "O'STAR",
-        desc: "Smoky chicken BBQ flavoured corn snack.",
-        image:"O'Star Chicken BBQ.jpg"            },
-    {
-        id: 'p20', cat: 'snack', en: "O'Star New York Beef Steak", ko: '오스타 뉴욕 스테이크',
-        price: 490, weight: '30g', emoji: '🥩', color: '#744210',
-        brand: "O'STAR",
-        desc: "Savoury New York style beef steak flavoured corn snack.",
-        image:"O'Star New York Beef Steak.jpg"            },
+   
     {
         id: 'p21', cat: 'snack', en: 'Chocopie', ko: '초코파이',
         price: 1350, weight: '180g', emoji: '🍫', color: '#744210',
@@ -146,7 +129,7 @@ const PRODUCTS = [
     
     {
         id: 'p33', cat: 'snack', en: "Kwang Cheon Kim Seasoned Seaweed", ko: '광천김 조미김',
-        price: 0, weight: '5g x 3', emoji: '🍙', color: '#38A169',
+        price: 570, weight: '5g x 3', emoji: '🍙', color: '#38A169',
         brand: 'KWANG CHEON KIM',
         desc: "Crispy roasted seaweed brushed with olive oil and green tea, 3-pack.",
         image:"Kwang Cheon Kim Seasoned Seaweed.png"
