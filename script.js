@@ -11,38 +11,38 @@ const CATEGORIES = [
 const PRODUCTS = [
     {
         id: 'p1', cat: 'noodle', en: 'Shin Ramyun', ko: '신라면',
-        price: 490, weight: '120g', emoji: '🍜', color: '#E53E3E',
+        price: 540, weight: '120g', emoji: '🍜', color: '#E53E3E',
         badge: 'Bestseller', brand: 'NONGSHIM',
         desc: "Korea's classic — rich beef broth with a warm, savoury kick.",
         image:"Shin Ramyun.jpg"            },
     {
         id: 'p2', cat: 'noodle', en: 'Shin Ramyun Stir Fry Cheese', ko: '신라면 볶음면 스터',
-        price: 580, weight: '136g', emoji: '🧀', color: '#D69E2E',
+        price: 640, weight: '136g', emoji: '🧀', color: '#D69E2E',
         brand: 'NONGSHIM',
         desc: "Stir-fried noodles with a creamy, cheesy spicy sauce.",
         image:"Shin Ramyun Stir Fry Cheese.jpg"            },
     {
         id: 'p3', cat: 'noodle', en: 'Shin Ramyun Toomba', ko: '신라면 툼바',
-        price: 580, weight: '137g', emoji: '🍲', color: '#D69E2E',
+        price: 640, weight: '137g', emoji: '🍲', color: '#D69E2E',
         brand: 'NONGSHIM',
         desc: "Creamy tomato-cream style spicy noodle soup.",
         image:"Shin Ramyun Toomba.jpg"
     },
     {
         id: 'p4', cat: 'noodle', en: 'Shin Red Super Spicy', ko: '신 레드 슈퍼 스파이시',
-        price: 595, weight: '120g', emoji: '🌶️', color: '#C53030',
+        price: 640, weight: '120g', emoji: '🌶️', color: '#C53030',
         badge: '🔥 Extra Spicy', brand: 'NONGSHIM',
         desc: "An even hotter take on the Shin classic — for heat seekers.",
         image:"Shin Red Super Spicy.jpg"},
     {
         id: 'p5', cat: 'noodle', en: 'Shin Ramyun Spicy Chicken', ko: '신라면 매운치킨',
-        price: 580, weight: '120g', emoji: '🐔', color: '#E53E3E',
+        price: 640, weight: '120g', emoji: '🐔', color: '#E53E3E',
         brand: 'NONGSHIM',
         desc: "Shin's signature broth with a spicy chicken twist.",
         image:"Shin Ramyun Spicy Chicken.jpeg"},
     {
         id: 'p6', cat: 'noodle', en: 'Ansungtangmyun', ko: '안성탕면',
-        price: 580, weight: '125g', emoji: '🍜', color: '#D69E2E',
+        price: 640, weight: '125g', emoji: '🍜', color: '#D69E2E',
         brand: 'NONGSHIM',
         desc: "A milder, hearty Korean noodle soup with deep savoury flavour.",
         image:"Ansungtangmyun.jpg"},
@@ -66,31 +66,31 @@ const PRODUCTS = [
         image:"Shin Ramyun Cup.jpg"},
     {
         id: 'p10', cat: 'noodle', en: 'Shin Ramyun Stir Fry', ko: '신라면 볶음면',
-        price: 595, weight: '131g', emoji: '🍝', color: '#E53E3E',
+        price: 640, weight: '131g', emoji: '🍝', color: '#E53E3E',
         brand: 'NONGSHIM',
         desc: "Stir-fried version of the Shin classic — bold and saucy.",
         image:"Shin Ramyun Stir Fry.png"},
     {
         id: 'p11', cat: 'noodle', en: 'Cham Pong', ko: '참퐁',
-        price: 595, weight: '124g', emoji: '🦐', color: '#C53030',
+        price: 640, weight: '124g', emoji: '🦐', color: '#C53030',
         brand: 'NONGSHIM',
         desc: "Spicy seafood-style noodle soup, Korean-Chinese favourite.",
         image:"Cham Pong.png"},
     {
         id: 'p12', cat: 'noodle', en: 'Hotdak Original', ko: '핫닭 오리지널',
-        price: 595, weight: '140g', emoji: '🔥', color: '#C53030',
+        price: 640, weight: '140g', emoji: '🔥', color: '#C53030',
         brand: 'NONGSHIM',
         desc: "Fiery hot chicken flavour noodles with serious heat.",
         image:"Hotdak Original.jpg"},
     {
         id: 'p13', cat: 'noodle', en: 'Hotdak Cheese', ko: '핫닭 치즈',
-        price: 595, weight: '150g', emoji: '🧀', color: '#D69E2E',
+        price: 640, weight: '150g', emoji: '🧀', color: '#D69E2E',
         brand: 'NONGSHIM',
         desc: "Spicy hot chicken noodles balanced with creamy cheese.",
         image:"Hotdak Cheese.jpg"},
     {
         id: 'p14', cat: 'noodle', en: 'Hotdak Carbo', ko: '핫닭 카르보',
-        price: 595, weight: '140g', emoji: '🍝', color: '#D69E2E',
+        price: 640, weight: '140g', emoji: '🍝', color: '#D69E2E',
         brand: 'NONGSHIM',
         desc: "Creamy carbonara-style spicy hot chicken noodles.",
         image:"Hotdak Carbo.jpg"},
@@ -158,15 +158,15 @@ const PRODUCTS = [
     },
     {
         id: 'p25', cat: 'meal', en: 'Braised Spicy Chicken', ko: '닭볶음탕',
-        price: 0, weight: '500g', emoji: '🍗', color: '#8B1A1A',
-        badge: 'New', brand: 'MAMICOOK',
+        price: 0, comingSoon: true, weight: '', emoji: '🍗', color: '#8B1A1A',
+        badge: 'Coming Soon', brand: 'MAMICOOK',
         desc: "Ready-to-heat Korean braised chicken in a rich, spicy red sauce.",
         image:"Braised Spicy Chicken.png"
     },
     {
         id: 'p26', cat: 'meal', en: 'Galbitang (Short Rib Soup)', ko: '갈비탕',
-        price: 0, weight: '700g', emoji: '🍲', color: '#8B1A1A',
-        badge: 'Best Choice', brand: 'MAMICOOK',
+        price: 0, comingSoon: true, weight: '', emoji: '🍲', color: '#8B1A1A',
+        badge: 'Coming Soon', brand: 'MAMICOOK',
         desc: "Comforting Korean beef short rib soup, ready to heat and serve.",
         image:"Galbitang.png"
     },
@@ -346,6 +346,44 @@ const PRODUCTS = [
         brand: 'BACCHUS',
         desc: "Energising Korean tonic drink.",
     },
+
+    // ===== COMING SOON ITEMS (from latest WON MART price list) =====
+    {
+        id: 'p56', cat: 'noodle', en: 'Shin Kimchi Stir Fry', ko: '신 김치 볶음면',
+        price: 0, comingSoon: true, weight: '', emoji: '🍜', color: '#C53030',
+        badge: 'Coming Soon', brand: 'NONGSHIM',
+        desc: "Stir-fried noodles with a bold, tangy kimchi kick.",
+    },
+    {
+        id: 'p57', cat: 'noodle', en: 'Tomyum Stir Fry', ko: '똠얌 볶음면',
+        price: 0, comingSoon: true, weight: '', emoji: '🍜', color: '#805AD5',
+        badge: 'Coming Soon', brand: 'NONGSHIM',
+        desc: "Stir-fried noodles with a zesty, aromatic tom yum flavour.",
+    },
+    {
+        id: 'p58', cat: 'noodle', en: 'Yukgaejang', ko: '육개장 라면',
+        price: 0, comingSoon: true, weight: '', emoji: '🍲', color: '#8B1A1A',
+        badge: 'Coming Soon', brand: 'NONGSHIM',
+        desc: "Spicy Korean shredded beef soup noodles, hearty and warming.",
+    },
+    {
+        id: 'p59', cat: 'meal', en: 'Black Goat Tang', ko: '흑염소탕',
+        price: 0, comingSoon: true, weight: '', emoji: '🍲', color: '#8B1A1A',
+        badge: 'Coming Soon', brand: 'MAMICOOK',
+        desc: "Ready-to-heat traditional Korean black goat soup.",
+    },
+    {
+        id: 'p60', cat: 'drink', en: 'Americano Hazelnut Flavor', ko: '아메리카노 헤이즐넛향',
+        price: 0, comingSoon: true, weight: '', emoji: '☕', color: '#744210',
+        badge: 'Coming Soon', brand: 'ONECUP',
+        desc: "Smooth iced americano with a warm hazelnut aroma.",
+    },
+    {
+        id: 'p61', cat: 'snack', en: 'Potato Chips', ko: '포테토칩',
+        price: 0, comingSoon: true, weight: '', emoji: '🥔', color: '#D69E2E',
+        badge: 'Coming Soon',
+        desc: "Classic crispy potato chips.",
+    },
 ];
 
 const HERO_DISHES = [
@@ -481,7 +519,7 @@ function renderProducts() {
 
     container.innerHTML = filtered.map(p => {
         const inWishlist = state.wishlist[p.id] || false;
-        const badgeHtml = p.badge ? `<span class="up-card-badge">${p.badge}</span>` : '';
+        const badgeHtml = p.badge ? `<span class="up-card-badge"${p.comingSoon ? ' style="background:var(--gray-500);"' : ''}>${p.badge}</span>` : '';
         const descHtml = p.desc ? `<div class="up-card-desc">${p.desc}</div>` : '';
         const brandHtml = p.brand ? `<div class="up-card-brand">${p.brand}</div>` : '';
         const weightHtml = p.weight ? `<div class="up-card-weight">${p.weight}</div>` : '';
@@ -498,6 +536,17 @@ function renderProducts() {
                 </div>
             </div>
         `;
+
+        const priceHtml = p.comingSoon
+            ? `<div class="up-card-price" style="color:var(--gray-400);font-size:15px;">Coming Soon</div>`
+            : `<div class="up-card-price">${money(p.price)}</div>`;
+
+        const actionHtml = p.comingSoon
+            ? `<button class="up-add-btn" disabled style="background:var(--gray-300);color:var(--gray-500);cursor:not-allowed;">Coming Soon</button>`
+            : `<button class="up-add-btn" onclick="addToCart('${p.id}')">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    Add to Cart
+                </button>`;
         
         return `
             <div class="up-card">
@@ -511,11 +560,8 @@ function renderProducts() {
                 <div class="up-card-ko">${p.ko}</div>
                 ${descHtml}
                 ${weightHtml}
-                <div class="up-card-price">${money(p.price)}</div>
-                <button class="up-add-btn" onclick="addToCart('${p.id}')">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-                    Add to Cart
-                </button>
+                ${priceHtml}
+                ${actionHtml}
             </div>
         `;
     }).join('');
@@ -707,8 +753,9 @@ function resetShop() {
 }
 
 function addToCart(id) {
-    state.cart[id] = (state.cart[id] || 0) + 1;
     const p = getProduct(id);
+    if (!p || p.comingSoon) return;
+    state.cart[id] = (state.cart[id] || 0) + 1;
     showToast(`✨ ${p.en} added`);
     renderCart();
 }
