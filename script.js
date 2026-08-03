@@ -143,75 +143,7 @@ const PRODUCTS = [
         brand: 'ORION',
         desc: "The classic Chocopie with rich dark chocolate coating.",
         image:"Chocopie Dark.png"            },
-    {
-        id: 'p23', cat: 'snack', en: 'Chocopie Fluffy (Big Box)', ko: '초코파이 플러피',
-        price: 2900, weight: '468g', emoji: '🍫', color: '#744210',
-        badge: 'Family Size', brand: 'ORION',
-        desc: "The big family-size box of marshmallow Chocopies.",
-        image:"Chocopie Fluffy (Big Box).jpg"               },
-    {
-        id: 'p24', cat: 'snack', en: "Welch's Drink", ko: '웰치스 음료',
-        price: 490, weight: '355ml', emoji: '🥤', color: '#805AD5',
-        badge: 'New', brand: "WELCH'S",
-        desc: "Refreshing fruit-flavoured soft drink, straight from Korea.",
-        image:"Welch's Drink.jpg"          
-    },
-    {
-        id: 'p25', cat: 'meal', en: 'Braised Spicy Chicken', ko: '닭볶음탕',
-        price: 0, comingSoon: true, weight: '', emoji: '🍗', color: '#8B1A1A',
-        badge: 'Coming Soon', brand: 'MAMICOOK',
-        desc: "Ready-to-heat Korean braised chicken in a rich, spicy red sauce.",
-        image:"Braised Spicy Chicken.png"
-    },
-    {
-        id: 'p26', cat: 'meal', en: 'Galbitang (Short Rib Soup)', ko: '갈비탕',
-        price: 0, comingSoon: true, weight: '', emoji: '🍲', color: '#8B1A1A',
-        badge: 'Coming Soon', brand: 'MAMICOOK',
-        desc: "Comforting Korean beef short rib soup, ready to heat and serve.",
-        image:"Galbitang.png"
-    },
-    {
-        id: 'p27', cat: 'snack', en: "O'Star Premium Beef Steak Chips", ko: '오스타 프리미엄 뉴욕 스테이크',
-        price: 0, weight: '60g', emoji: '🥩', color: '#556B2F',
-        badge: 'Premium', brand: "O'STAR",
-        desc: "Ridged premium potato chips with a savoury New York steak flavour.",
-        image:"O'Star Premium Beef Steak.png"
-    },
-    {
-        id: 'p28', cat: 'snack', en: "O'Star Premium Chicken BBQ Chips", ko: '오스타 프리미엄 치킨 바베큐',
-        price: 0, weight: '60g', emoji: '🍗', color: '#D2691E',
-        brand: "O'STAR",
-        desc: "Ridged premium potato chips with a smoky chicken BBQ flavour.",
-        image:"O'Star Premium Chicken BBQ.png"
-    },
-    {
-        id: 'p29', cat: 'snack', en: "O'Star Premium Kimchi Chips", ko: '오스타 프리미엄 김치맛',
-        price: 0, weight: '60g', emoji: '🌶️', color: '#C53030',
-        brand: "O'STAR",
-        desc: "Ridged premium potato chips with a tangy Korean kimchi flavour.",
-        image:"O'Star Premium Kimchi.png"
-    },
-    {
-        id: 'p30', cat: 'snack', en: "Welch's Zero Cherry Strawberry", ko: '웰치스 제로 체리스트로베리',
-        price: 0, weight: '355ml', emoji: '🍒', color: '#D53F8C',
-        badge: 'Zero Sugar', brand: "WELCH'S",
-        desc: "Sugar-free sparkling soda with cherry-strawberry flavour.",
-        image:"Welchs Zero Cherry Strawberry.png"
-    },
-    {
-        id: 'p31', cat: 'snack', en: "Welch's Zero Shine Muscat", ko: '웰치스 제로 샤인머스캣',
-        price: 0, weight: '355ml', emoji: '🍈', color: '#38A169',
-        badge: 'Zero Sugar', brand: "WELCH'S",
-        desc: "Sugar-free sparkling soda with sweet shine muscat grape flavour.",
-        image:"Welchs Zero Shine Muscat.png"
-    },
-    {
-        id: 'p32', cat: 'snack', en: "Welch's Grape Soda", ko: '웰치스 포도 음료', 
-        price: 0, weight: '355ml', emoji: '🍇', color: '#6B21A8',
-        brand: "WELCH'S",
-        desc: "Classic sparkling grape soda, sweet and fruity.",
-        image:"Welchs Grape.png"
-    },
+    
     {
         id: 'p33', cat: 'snack', en: "Kwang Cheon Kim Seasoned Seaweed", ko: '광천김 조미김',
         price: 0, weight: '5g x 3', emoji: '🍙', color: '#38A169',
@@ -393,7 +325,7 @@ const PRODUCTS = [
         price: 0, comingSoon: true, weight: '', emoji: '☕', color: '#744210',
         badge: 'Coming Soon', brand: 'ONECUP',
         desc: "Smooth iced americano with a warm hazelnut aroma.",
-                image: ".jpg",
+         
 
     },
     {
@@ -401,7 +333,7 @@ const PRODUCTS = [
         price: 0, comingSoon: true, weight: '', emoji: '🥔', color: '#D69E2E',
         badge: 'Coming Soon',
         desc: "Classic crispy potato chips.",
-        image: ".jpg",
+     
     },
 ];
 
