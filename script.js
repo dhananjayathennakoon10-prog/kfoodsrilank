@@ -632,8 +632,9 @@ function renderCheckout() {
 }
 
 // Builds the order message and opens WhatsApp with delivery + order details pre-filled
+// WHATSAPP NUMBER — confirmed as +94 74 236 3565 (digits only, no + or spaces, per WhatsApp's wa.me link format)
 function sendOrderToWhatsApp() {
-    const phone = "94742363565"; // Your WhatsApp number
+    const phone = "94742363565"; // Your WhatsApp number: +94 74 236 3565
 
     let message = "🛒 *NEW ORDER - K FOOD SRI LANKA*\n\n";
 
