@@ -633,7 +633,7 @@ function renderCheckout() {
 
 // Builds the order message and opens WhatsApp with delivery + order details pre-filled
 function sendOrderToWhatsApp() {
-    const phone = "94704845611"; // Your WhatsApp number
+    const phone = "94742363565"; // Your WhatsApp number
 
     let message = "🛒 *NEW ORDER - K FOOD SRI LANKA*\n\n";
 
