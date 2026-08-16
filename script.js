@@ -381,8 +381,8 @@ function getSubtotal() {
 
 function getShipping() {
     const sub = getSubtotal();
-    // Free shipping over Rs. 5,000
-    return sub > 5000 || sub === 0 ? 0 : 300;
+    // Free shipping over Rs. 3,000
+    return sub > 3000 || sub === 0 ? 0 : 300;
 }
 
 function getTotal() {
